@@ -27,7 +27,7 @@ namespace SortLibrary
                 if (array[i] < min) min = array[i];
                 if (array[i] > max) max = array[i];
             }
-
+    
             // Создаем массив подсчета
             int[] count = new int[max - min + 1];
 
@@ -50,7 +50,7 @@ namespace SortLibrary
         /// <summary>
         /// Сортировка 2 элементов
         /// </summary>
-        public static void Sort2(ref int a, ref int b)
+        public static void Sort2(int a, int b)
         {
             if (a > b)
                 Swap(ref a, ref b);
