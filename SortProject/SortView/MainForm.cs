@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 using SortLibrary;
 
 namespace SortView
 {
-    public partial class MainForm: Form
+    public partial class MainForm : Form
     {
+        private Random random = new Random();
+        private int sortCounter = 1;
+
         public MainForm()
         {
             InitializeComponent();
@@ -23,468 +21,184 @@ namespace SortView
             Application.Exit();
         }
 
-        private Random random = new Random();
-
         private void button1_Click(object sender, EventArgs e)
         {
+            GenerateRandomArray();
+        }
+
+        private void GenerateRandomArray()
+        {
             string Length = textBox2.Text;
-            string Words = textBox3.Text;
-            int Length_int = 0;
-            int Words_int = 0;
+            string Words_min = textBox3.Text;
+            string Words_max = textBox4.Text;
+            int Length_int, Words_min_int, Words_max_int;
 
-            try
+            if (!int.TryParse(Length, out Length_int) || !int.TryParse(Words_min, out Words_min_int) || !int.TryParse(Words_max, out Words_max_int))
             {
-                Length_int = Convert.ToInt32(Length);
-                Words_int = Convert.ToInt32(Words);
-            }
-            catch
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
+                richTextBox1.Text = "Ошибка: введите целые числа в оба поля";
                 return;
             }
 
-            if ((Length_int < 0 || Length_int > 1000000) || (Words_int < 0 || Words_int > 1000000))
+            if (Length_int <= -1000000 || Words_min_int <= -1000000 || Length_int > 1000000 || Words_min_int > 1000000 || Words_max_int <= -1000000 || Words_max_int > 1000000)
             {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
+                richTextBox1.Text = "Ошибка: числа должны быть от -1000000 до 1.000.000";
                 return;
             }
 
-            // Генерируем массив из 100 случайных чисел от 0 до Length
-            int[] randomArray = new int [Length_int];
-            for (int i = 0; i < randomArray.Length; i++)
+            if (Words_max_int < Words_min_int)
             {
-                randomArray[i] = random.Next(0, Words_int);
-            }
-
-            // Преобразуем массив в строку с элементами через запятую и выыводим его
-            richTextBox1.Text = string.Join(", ", randomArray);
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            // Получаем текст из RichTextBox1
-            string inputText = richTextBox1.Text.Trim();
-
-            if (string.IsNullOrEmpty(inputText))
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
+                richTextBox1.Text = "Ошибка: минимум не должен превышать мксимум";
                 return;
             }
 
-            int[] numbers;
-
-            try
-            {
-                // Разделяем строку по запятым и удаляем возможные пробелы
-                string[] elements = inputText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Удаляем лишние пробелы у каждого элемента
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    elements[i] = elements[i].Trim();
-                }
-
-                List<int> numbersList = new List<int>();
-
-                foreach (string s in elements)
-                {
-                    if (int.TryParse(s, out int num))
-                    {
-                        numbersList.Add(num);
-                    }
-                }
-
-                numbers = numbersList.ToArray();
-            }
-            catch (Exception ex)
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            SimpleSorts.BubbleSort(numbers);
-
-            richTextBox2.Text = string.Join(", ", numbers);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            SimpleSorts.BubbleSort(numbers);
-            stopwatch.Stop();
-
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            // Получаем текст из RichTextBox1
-            string inputText = richTextBox1.Text.Trim();
-
-            if (string.IsNullOrEmpty(inputText))
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            int[] numbers;
-
-            try
-            {
-                // Разделяем строку по запятым и удаляем возможные пробелы
-                string[] elements = inputText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Удаляем лишние пробелы у каждого элемента
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    elements[i] = elements[i].Trim();
-                }
-
-                List<int> numbersList = new List<int>();
-
-                foreach (string s in elements)
-                {
-                    if (int.TryParse(s, out int num))
-                    {
-                        numbersList.Add(num);
-                    }
-                }
-
-                numbers = numbersList.ToArray();
-            }
-            catch (Exception ex)
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            SimpleSorts.BubbleSort(numbers);
-
-            richTextBox2.Text = string.Join(", ", numbers);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            SimpleSorts.InsertionSort(numbers);
-            stopwatch.Stop();
-
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            // Получаем текст из RichTextBox1
-            string inputText = richTextBox1.Text.Trim();
-
-            if (string.IsNullOrEmpty(inputText))
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            int[] numbers;
-
-            try
-            {
-                // Разделяем строку по запятым и удаляем возможные пробелы
-                string[] elements = inputText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Удаляем лишние пробелы у каждого элемента
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    elements[i] = elements[i].Trim();
-                }
-
-                List<int> numbersList = new List<int>();
-
-                foreach (string s in elements)
-                {
-                    if (int.TryParse(s, out int num))
-                    {
-                        numbersList.Add(num);
-                    }
-                }
-
-                numbers = numbersList.ToArray();
-            }
-            catch (Exception ex)
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            SimpleSorts.BubbleSort(numbers);
-
-            richTextBox2.Text = string.Join(", ", numbers);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            EfficientSorts.MergeSort(numbers);
-            stopwatch.Stop();
-
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            // Получаем текст из RichTextBox1
-            string inputText = richTextBox1.Text.Trim();
-
-            if (string.IsNullOrEmpty(inputText))
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            int[] numbers;
-
-            try
-            {
-                // Разделяем строку по запятым и удаляем возможные пробелы
-                string[] elements = inputText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Удаляем лишние пробелы у каждого элемента
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    elements[i] = elements[i].Trim();
-                }
-
-                List<int> numbersList = new List<int>();
-
-                foreach (string s in elements)
-                {
-                    if (int.TryParse(s, out int num))
-                    {
-                        numbersList.Add(num);
-                    }
-                }
-
-                numbers = numbersList.ToArray();
-            }
-            catch (Exception ex)
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            SimpleSorts.BubbleSort(numbers);
-
-            richTextBox2.Text = string.Join(", ", numbers);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            EfficientSorts.QuickSort(numbers, 0, (numbers.Length / 2));
-            stopwatch.Stop();
-
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            int a = 0;
-            int b = 1;
-
-            string Length = textBox2.Text;
-            string Words = textBox3.Text;
-            int Length_int = 0;
-            int Words_int = 0;
-
-            if (Words != "2")
-            {
-                richTextBox2.Text = "Ошибка, для сортировки '2 элемента' в поле 'Количество неповторяющихся элементов' укажите 2";
-                return;
-            }
-
-            try
-            {
-                Length_int = Convert.ToInt32(Length);
-                Words_int = Convert.ToInt32(Words);
-            }
-            catch
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
-                return;
-            }
-
-            if ((Length_int < 0 || Length_int > 1000000) || (Words_int < 0 || Words_int > 1000000))
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
-                return;
-            }
-
-            // Генерируем массив из 100 случайных чисел от 0 до Length
             int[] randomArray = new int[Length_int];
             for (int i = 0; i < randomArray.Length; i++)
             {
-                randomArray[i] = random.Next(0, Words_int);
+                randomArray[i] = random.Next(Words_min_int, Words_max_int + 1);
             }
 
-            // Преобразуем массив в строку с элементами через запятую и выыводим его
             richTextBox1.Text = string.Join(", ", randomArray);
+        }
 
-            SimpleSorts.BubbleSort(randomArray);
+        private int[] ParseInputArray()
+        {
+            string inputText = richTextBox1.Text.Trim();
+            if (string.IsNullOrEmpty(inputText))
+            {
+                richTextBox2.Text = "Ошибка: массив пуст";
+                return null;
+            }
 
-            richTextBox2.Text = string.Join(", ", randomArray);
+            try
+            {
+                string[] elements = inputText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                List<int> numbers = new List<int>();
 
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            LinearSorts.Sort2(a, b);
+                foreach (string s in elements)
+                {
+                    if (int.TryParse(s.Trim(), out int num))
+                    {
+                        numbers.Add(num);
+                    }
+                    else
+                    {
+                        richTextBox2.Text = $"Ошибка: неверный формат числа '{s}'";
+                        return null;
+                    }
+                }
+
+                return numbers.ToArray();
+            }
+            catch
+            {
+                richTextBox2.Text = "Ошибка при разборе массива";
+                return null;
+            }
+        }
+
+        private void PerformSort(Action<int[]> sortAction, string sortName)
+        {
+            int[] numbers = ParseInputArray();
+            if (numbers == null) return;
+
+            int[] arrayToSort = (int[])numbers.Clone();
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            sortAction(arrayToSort);
             stopwatch.Stop();
 
+            richTextBox2.Text = string.Join(", ", arrayToSort);
             textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
+
+            History.Instance.AddResult(sortCounter++, sortName, stopwatch.Elapsed);
+        }
+
+        // Обновленные обработчики кнопок с указанием названий сортировок:
+        private void button3_Click(object sender, EventArgs e) => PerformSort(SimpleSorts.BubbleSort, "Сортировка пузырьком");
+        private void button4_Click(object sender, EventArgs e) => PerformSort(SimpleSorts.InsertionSort, "Сортировка вставками");
+        private void button5_Click(object sender, EventArgs e) => PerformSort(EfficientSorts.MergeSort, "Сортировка слиянием");
+        private void button6_Click(object sender, EventArgs e) => PerformSort(arr => EfficientSorts.QuickSort(arr, 0, arr.Length - 1), "Быстрая сортировка");
+        private void button2_Click(object sender, EventArgs e) => PerformSort(LinearSorts.CountingSort, "Сортировка подсчетом");
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (textBox3.Text != "2")
+            {
+                richTextBox2.Text = "Для этой сортировки укажите 2 в поле 'Количество элементов'";
+                return;
+            }
+
+            int[] numbers = ParseInputArray();
+            if (numbers == null) return;
+
+            int[] arrayToSort = (int[])numbers.Clone();
+
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            LinearSorts.Sort2(0, 1);
+            stopwatch.Stop();
+
+            richTextBox2.Text = string.Join(", ", arrayToSort);
+            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
+            History.Instance.AddResult(sortCounter++, "Сортировка 2 элементов", stopwatch.Elapsed);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            string Length = textBox2.Text;
-            string Words = textBox3.Text;
-            int Length_int = 0;
-            int Words_int = 0;
-
-            if (Words != "3")
+            if (textBox3.Text != "3")
             {
-                richTextBox2.Text = "Ошибка, для сортировки 'Флаг' в поле 'Количество неповторяющихся элементов' укажите 3";
+                richTextBox2.Text = "Для этой сортировки укажите 3 в поле 'Количество элементов'";
                 return;
             }
 
-            try
-            {
-                Length_int = Convert.ToInt32(Length);
-                Words_int = Convert.ToInt32(Words);
-            }
-            catch
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
-                return;
-            }
+            int[] numbers = ParseInputArray();
+            if (numbers == null) return;
 
-            if ((Length_int < 0 || Length_int > 1000000) || (Words_int < 0 || Words_int > 1000000))
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
-                return;
-            }
+            int[] arrayToSort = (int[])numbers.Clone();
 
-            // Генерируем массив из 100 случайных чисел от 0 до Length
-            int[] randomArray = new int[Length_int];
-            for (int i = 0; i < randomArray.Length; i++)
-            {
-                randomArray[i] = random.Next(0, Words_int);
-            }
-
-            // Преобразуем массив в строку с элементами через запятую и выыводим его
-            richTextBox1.Text = string.Join(", ", randomArray);
-
-            SimpleSorts.BubbleSort(randomArray);
-
-            richTextBox2.Text = string.Join(", ", randomArray);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            LinearSorts.DutchFlagSort(randomArray);
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            LinearSorts.DutchFlagSort(arrayToSort);
             stopwatch.Stop();
 
+            richTextBox2.Text = string.Join(", ", arrayToSort);
             textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
+            History.Instance.AddResult(sortCounter++, "Голландский флаг", stopwatch.Elapsed);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            string Length = textBox2.Text;
-            string Words = textBox3.Text;
-            int Length_int = 0;
-            int Words_int = 0;
-
-            if (Words != "4")
+            if (textBox3.Text != "4")
             {
-                richTextBox2.Text = "Ошибка, для сортировки 'Хогвартс' в поле 'Количество неповторяющихся элементов' укажите 4";
+                richTextBox2.Text = "Для этой сортировки укажите 4 в поле 'Количество элементов'";
                 return;
             }
 
-            try
-            {
-                Length_int = Convert.ToInt32(Length);
-                Words_int = Convert.ToInt32(Words);
-            }
-            catch
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
-                return;
-            }
+            int[] numbers = ParseInputArray();
+            if (numbers == null) return;
 
-            if ((Length_int < 0 || Length_int > 1000000) || (Words_int < 0 || Words_int > 1000000))
-            {
-                richTextBox1.Text = "Ошибка, введите целое положительное число, не большее, чем 1.000.000, в поля: количество элементов и количество неповторяющихся элементов";
-                return;
-            }
+            int[] arrayToSort = (int[])numbers.Clone();
 
-            // Генерируем массив из 100 случайных чисел от 0 до Length
-            int[] randomArray = new int[Length_int];
-            for (int i = 0; i < randomArray.Length; i++)
-            {
-                randomArray[i] = random.Next(0, Words_int);
-            }
-
-            // Преобразуем массив в строку с элементами через запятую и выыводим его
-            richTextBox1.Text = string.Join(", ", randomArray);
-
-            SimpleSorts.BubbleSort(randomArray);
-
-            richTextBox2.Text = string.Join(", ", randomArray);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            LinearSorts.HogwartsSort(randomArray);
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            LinearSorts.HogwartsSort(arrayToSort);
             stopwatch.Stop();
 
+            richTextBox2.Text = string.Join(", ", arrayToSort);
             textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            // Получаем текст из RichTextBox1
-            string inputText = richTextBox1.Text.Trim();
-
-            if (string.IsNullOrEmpty(inputText))
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            int[] numbers;
-
-            try
-            {
-                // Разделяем строку по запятым и удаляем возможные пробелы
-                string[] elements = inputText.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-
-                // Удаляем лишние пробелы у каждого элемента
-                for (int i = 0; i < elements.Length; i++)
-                {
-                    elements[i] = elements[i].Trim();
-                }
-
-                List<int> numbersList = new List<int>();
-
-                foreach (string s in elements)
-                {
-                    if (int.TryParse(s, out int num))
-                    {
-                        numbersList.Add(num);
-                    }
-                }
-
-                numbers = numbersList.ToArray();
-            }
-            catch (Exception ex)
-            {
-                richTextBox2.Text = "Ошибка, введите элементы массива через запятую!";
-                return;
-            }
-
-            SimpleSorts.BubbleSort(numbers);
-
-            richTextBox2.Text = string.Join(", ", numbers);
-
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            LinearSorts.CountingSort(numbers);
-            stopwatch.Stop();
-
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
+            History.Instance.AddResult(sortCounter++, "Хогвартс сортировка", stopwatch.Elapsed);
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            Reference form = new Reference();
-            form.ShowDialog();
+            new Reference().ShowDialog();
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            History.Instance.ShowDialog();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
