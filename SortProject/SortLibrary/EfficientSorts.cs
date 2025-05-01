@@ -14,9 +14,9 @@ namespace SortLibrary
         /// <summary>
         /// Сортировка слиянием
         /// </summary>
-        public static void MergeSort(int[] array)
+        public static int[] MergeSort(int[] array)
         {
-            if (array.Length <= 1) return;
+            if (array.Length <= 1) return new int[0];
 
             int mid = array.Length / 2;
             int[] left = new int[mid];
@@ -28,6 +28,7 @@ namespace SortLibrary
             MergeSort(left);
             MergeSort(right);
             Merge(array, left, right);
+            return array;
         }
 
         private static void Merge(int[] result, int[] left, int[] right)
@@ -52,7 +53,7 @@ namespace SortLibrary
         /// <summary>
         /// Быстрая сортировка (Хоара)
         /// </summary>
-        public static void QuickSort(int[] array, int left, int right)
+        public static int[] QuickSort(int[] array, int left, int right)
         {
             if (left < right)
             {
@@ -60,6 +61,7 @@ namespace SortLibrary
                 QuickSort(array, left, pivot - 1);
                 QuickSort(array, pivot + 1, right);
             }
+            return array;
         }
 
         private static int Partition(int[] array, int left, int right)

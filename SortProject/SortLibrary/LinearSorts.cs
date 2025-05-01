@@ -14,9 +14,9 @@ namespace SortLibrary
         /// <summary>
         /// Сортировка подсчетом (Bucket sort для небольших диапазонов)
         /// </summary>
-        public static void CountingSort(int[] array)
+        public static int[] CountingSort(int[] array)
         {
-            if (array.Length == 0) return;
+            if (array.Length == 0) return new int[0];
 
             int min = array[0];
             int max = array[0];
@@ -45,21 +45,23 @@ namespace SortLibrary
                     count[i]--;
                 }
             }
+            return array;
         }
 
         /// <summary>
         /// Сортировка 2 элементов
         /// </summary>
-        public static void Sort2(ref int a, ref int b)
+        public static int[] Sort2(ref int a, ref int b)
         {
             if (a > b)
                 Swap(ref a, ref b);
+            return new int[] { a, b };
         }
 
         /// <summary>
         /// Голландский флаг (сортировка 3 элементов)
         /// </summary>
-        public static void DutchFlagSort(int[] array)
+        public static int[] DutchFlagSort(int[] array)
         {
             int low = 0;
             int mid = 0;
@@ -84,12 +86,13 @@ namespace SortLibrary
                         break;
                 }
             }
+            return array;
         }
 
         /// <summary>
         /// Сортировка 4 элементов (Хогвартс)
         /// </summary>
-        public static void HogwartsSort(int[] houses)
+        public static int[] HogwartsSort(int[] houses)
         {
             // Предполагаем значения: 0 - Гриффиндор, 1 - Слизерин, 2 - Когтевран, 3 - Пуффендуй
             int[] count = new int[4];
@@ -108,6 +111,7 @@ namespace SortLibrary
                     count[house]--;
                 }
             }
+            return count;
         }
 
 

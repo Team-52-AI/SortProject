@@ -14,7 +14,7 @@ namespace SortLibrary
         /// <summary>
         /// Сортировка пузырьком
         /// </summary>
-        public static void BubbleSort(int[] array)
+        public static int[] BubbleSort(int[] array)
         {
             int n = array.Length;
             for (int i = 0; i < n - 1; i++)
@@ -33,12 +33,13 @@ namespace SortLibrary
                 }
                 if (!swapped) break;
             }
+            return array;
         }
 
         /// <summary>
         /// Сортировка вставками
         /// </summary>
-        public static void InsertionSort(int[] array)
+        public static int[] InsertionSort(int[] array)
         {
             int n = array.Length;
             for (int i = 1; i < n; i++)
@@ -53,6 +54,7 @@ namespace SortLibrary
                 }
                 array[j + 1] = key;
             }
+            return array;
         }
     }
 }
