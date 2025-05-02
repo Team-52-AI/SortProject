@@ -1,14 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\viken\\source\\repos\\SortProject\\SortProject\\",
+  "WorkspaceRootPath": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FF544488-BE65-439F-ABF7-6DBF2A17D05F}|SortUnitTest\\SortUnitTest.csproj|c:\\users\\viken\\source\\repos\\sortproject\\sortproject\\sortunittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\sortlibrary\\linearsorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|solutionrelative:sortlibrary\\linearsorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF544488-BE65-439F-ABF7-6DBF2A17D05F}|SortUnitTest\\SortUnitTest.csproj|c:\\users\\\u043E\u0431\u0430\u043C\u0430\\documents\\farmer_52team\\sortproject\\sortproject\\sortunittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FF544488-BE65-439F-ABF7-6DBF2A17D05F}|SortUnitTest\\SortUnitTest.csproj|solutionrelative:sortunittest\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|C:\\Users\\viken\\source\\repos\\SortProject\\SortProject\\sortlibrary\\linearsorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|solutionrelative:sortlibrary\\linearsorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42396E8C-32F1-422F-A733-9B6C82D94A5C}|SortView\\SortView.csproj|c:\\users\\\u043E\u0431\u0430\u043C\u0430\\documents\\farmer_52team\\sortproject\\sortproject\\sortview\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42396E8C-32F1-422F-A733-9B6C82D94A5C}|SortView\\SortView.csproj|solutionrelative:sortview\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|c:\\users\\\u043E\u0431\u0430\u043C\u0430\\documents\\farmer_52team\\sortproject\\sortproject\\sortlibrary\\efficientsorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|solutionrelative:sortlibrary\\efficientsorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|c:\\users\\\u043E\u0431\u0430\u043C\u0430\\documents\\farmer_52team\\sortproject\\sortproject\\sortlibrary\\simplesorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E115D127-0EBF-451C-8DA5-09000E525A0F}|SortLibrary\\SortLibrary.csproj|solutionrelative:sortlibrary\\simplesorts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42396E8C-32F1-422F-A733-9B6C82D94A5C}|SortView\\SortView.csproj|c:\\users\\\u043E\u0431\u0430\u043C\u0430\\documents\\farmer_52team\\sortproject\\sortproject\\sortview\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{42396E8C-32F1-422F-A733-9B6C82D94A5C}|SortView\\SortView.csproj|solutionrelative:sortview\\history.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,34 +34,81 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SimpleSorts.cs",
+              "DocumentMoniker": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortLibrary\\SimpleSorts.cs",
+              "RelativeDocumentMoniker": "SortLibrary\\SimpleSorts.cs",
+              "ToolTip": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortLibrary\\SimpleSorts.cs",
+              "RelativeToolTip": "SortLibrary\\SimpleSorts.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:15:44.546Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "EfficientSorts.cs",
+              "DocumentMoniker": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortLibrary\\EfficientSorts.cs",
+              "RelativeDocumentMoniker": "SortLibrary\\EfficientSorts.cs",
+              "ToolTip": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortLibrary\\EfficientSorts.cs",
+              "RelativeToolTip": "SortLibrary\\EfficientSorts.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAA6wDgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:14:56.54Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "History.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortView\\History.cs",
+              "RelativeDocumentMoniker": "SortView\\History.cs",
+              "ToolTip": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortView\\History.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "RelativeToolTip": "SortView\\History.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:11:46.573Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainForm.cs",
+              "DocumentMoniker": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortView\\MainForm.cs",
+              "RelativeDocumentMoniker": "SortView\\MainForm.cs",
+              "ToolTip": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortView\\MainForm.cs",
+              "RelativeToolTip": "SortView\\MainForm.cs",
+              "ViewState": "AgIAAHwAAAAAAAAAAAAAAIgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-02T16:11:04.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "LinearSorts.cs",
-              "DocumentMoniker": "C:\\Users\\viken\\source\\repos\\SortProject\\SortProject\\SortLibrary\\LinearSorts.cs",
+              "DocumentMoniker": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortLibrary\\LinearSorts.cs",
               "RelativeDocumentMoniker": "SortLibrary\\LinearSorts.cs",
-              "ToolTip": "C:\\Users\\viken\\source\\repos\\SortProject\\SortProject\\SortLibrary\\LinearSorts.cs",
+              "ToolTip": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortLibrary\\LinearSorts.cs",
               "RelativeToolTip": "SortLibrary\\LinearSorts.cs",
-              "ViewState": "AgIAAFYAAAAAAAAAAAAgwIAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAqwE8AAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-10T19:41:32.413Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UnitTest1.cs",
-              "DocumentMoniker": "C:\\Users\\viken\\source\\repos\\SortProject\\SortProject\\SortUnitTest\\UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortUnitTest\\UnitTest1.cs",
               "RelativeDocumentMoniker": "SortUnitTest\\UnitTest1.cs",
-              "ToolTip": "C:\\Users\\viken\\source\\repos\\SortProject\\SortProject\\SortUnitTest\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\\u041E\u0431\u0430\u043C\u0430\\Documents\\Farmer_52Team\\SortProject\\SortProject\\SortUnitTest\\UnitTest1.cs",
               "RelativeToolTip": "SortUnitTest\\UnitTest1.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowE4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAiwBEAAABQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-18T08:00:05.11Z",
               "EditorCaption": ""

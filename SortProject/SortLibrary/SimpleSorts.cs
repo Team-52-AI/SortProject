@@ -1,20 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// SimpleSorts.cs
 namespace SortLibrary
 {
-    /// <summary>
-    /// Класс, содержащий простые методы сортировки с квадратичной сложностью O(n^2)
-    /// </summary>
     public class SimpleSorts
     {
-        /// <summary>
-        /// Сортировка пузырьком
-        /// </summary>
-        public static int[] BubbleSort(int[] array)
+        public static void BubbleSort(int[] array)
         {
             int n = array.Length;
             for (int i = 0; i < n - 1; i++)
@@ -24,7 +13,6 @@ namespace SortLibrary
                 {
                     if (array[j] > array[j + 1])
                     {
-                        // Меняем элементы местами
                         int temp = array[j];
                         array[j] = array[j + 1];
                         array[j + 1] = temp;
@@ -33,13 +21,9 @@ namespace SortLibrary
                 }
                 if (!swapped) break;
             }
-            return array;
         }
 
-        /// <summary>
-        /// Сортировка вставками
-        /// </summary>
-        public static int[] InsertionSort(int[] array)
+        public static void InsertionSort(int[] array)
         {
             int n = array.Length;
             for (int i = 1; i < n; i++)
@@ -54,7 +38,6 @@ namespace SortLibrary
                 }
                 array[j + 1] = key;
             }
-            return array;
         }
     }
 }

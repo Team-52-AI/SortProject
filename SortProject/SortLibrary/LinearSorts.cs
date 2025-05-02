@@ -1,41 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// LinearSorts.cs
+using System;
 
 namespace SortLibrary
 {
-    /// <summary>
-    /// Класс, содержащий сортировки линейной сложности и специализированные методы
-    /// </summary>
     public class LinearSorts
     {
-        /// <summary>
-        /// Сортировка подсчетом (Bucket sort для небольших диапазонов)
-        /// </summary>
-        public static int[] CountingSort(int[] array)
+        public static void CountingSort(int[] array)
         {
-            if (array.Length == 0) return new int[0];
+            if (array.Length == 0) return;
 
             int min = array[0];
             int max = array[0];
 
-            // Находим диапазон значений
             for (int i = 1; i < array.Length; i++)
             {
                 if (array[i] < min) min = array[i];
                 if (array[i] > max) max = array[i];
             }
 
-            // Создаем массив подсчета
             int[] count = new int[max - min + 1];
 
-            // Заполняем массив подсчета
             for (int i = 0; i < array.Length; i++)
                 count[array[i] - min]++;
 
-            // Восстанавливаем отсортированный массив
             int index = 0;
             for (int i = 0; i < count.Length; i++)
             {
@@ -45,29 +32,20 @@ namespace SortLibrary
                     count[i]--;
                 }
             }
-            return array;
         }
 
-        /// <summary>
-        /// Сортировка 2 элементов
-        /// </summary>
-        public static int[] Sort2(ref int a, ref int b)
+        public static void Sort2(ref int a, ref int b)
         {
             if (a > b)
                 Swap(ref a, ref b);
-            return new int[] { a, b };
         }
 
-        /// <summary>
-        /// Голландский флаг (сортировка 3 элементов)
-        /// </summary>
-        public static int[] DutchFlagSort(int[] array)
+        public static void DutchFlagSort(int[] array)
         {
             int low = 0;
             int mid = 0;
             int high = array.Length - 1;
 
-            // Предполагаем, что средний элемент (pivot) = 1
             while (mid <= high)
             {
                 switch (array[mid])
@@ -86,38 +64,91 @@ namespace SortLibrary
                         break;
                 }
             }
-            return array;
         }
 
-        /// <summary>
-        /// Сортировка 4 элементов (Хогвартс)
-        /// </summary>
-        public static int[] HogwartsSort(int[] houses)
+        public static void SortHat(char[] students)
         {
-            // Предполагаем значения: 0 - Гриффиндор, 1 - Слизерин, 2 - Когтевран, 3 - Пуффендуй
-            int[] count = new int[4];
+            int n = students.Length;
+            int g = 0;    // Граница для Гриффиндора
+            int r = 0;    // Текущий индекс проверки
+            int h = n - 1; // Граница для Хаффлпаффа
+            int s = n - 1; // Граница для Слизерина
 
-            // Подсчет количества студентов каждого факультета
-            foreach (int house in houses)
-                count[house]++;
-
-            // Заполняем массив в порядке факультетов
-            int index = 0;
-            for (int house = 0; house < 4; house++)
+            while (r <= h)
             {
-                while (count[house] > 0)
+                char current = students[r];
+                char opposite = students[h];
+
+                if (current == 'R') // Рейвенкло сразу на место
                 {
-                    houses[index++] = house;
-                    count[house]--;
+                    r++;
+                    continue;
+                }
+
+                if (opposite == 'H') // Хаффлпафф в конец
+                {
+                    Swap(students, h, s);
+                    h--;
+                    s--;
+                    continue;
+                }
+
+                if (current == 'G') // Гриффиндор в начало
+                {
+                    Swap(students, r, g);
+                    g++;
+                    r++;
+                }
+                else if (opposite == 'S') // Слизерин в конец
+                {
+                    Swap(students, h, s);
+                    h--;
+                    s--;
+                }
+                else if (current == 'H' && opposite == 'R')
+                {
+                    Swap(students, r, h);
+                    r++;
+                    h--;
+                }
+                else if (current == 'H' && opposite == 'G')
+                {
+                    Swap(students, r, h);
+                    Swap(students, r, g);
+                    r++;
+                    g++;
+                }
+                else if (current == 'S' && opposite == 'R')
+                {
+                    Swap(students, r, h);
+                    Swap(students, h, s);
+                    h--;
+                    s--;
+                }
+                else if (current == 'S' && opposite == 'G')
+                {
+                    Swap(students, r, h);
+                    Swap(students, r, g);
+                    Swap(students, h, s);
+                    r++;
+                    g++;
+                    h--;
+                    s--;
+                }
+                else
+                {
+                    r++;
                 }
             }
-            return count;
         }
 
+        private static void Swap(char[] array, int i, int j)
+        {
+            char temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
 
-        /// <summary>
-        /// Вспомогательная функция для обмена элементов
-        /// </summary>
         private static void Swap(ref int a, ref int b)
         {
             int temp = a;

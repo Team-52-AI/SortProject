@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// EfficientSorts.cs
+using System;
 
 namespace SortLibrary
 {
-    /// <summary>
-    /// Класс, содержащий эффективные методы сортировки с сложностью O(n log n)
-    /// </summary>
     public class EfficientSorts
     {
-        /// <summary>
-        /// Сортировка слиянием
-        /// </summary>
-        public static int[] MergeSort(int[] array)
+        public static void MergeSort(int[] array)
         {
-            if (array.Length <= 1) return new int[0];
+            if (array.Length <= 1) return;
 
             int mid = array.Length / 2;
             int[] left = new int[mid];
@@ -28,7 +19,6 @@ namespace SortLibrary
             MergeSort(left);
             MergeSort(right);
             Merge(array, left, right);
-            return array;
         }
 
         private static void Merge(int[] result, int[] left, int[] right)
@@ -50,10 +40,7 @@ namespace SortLibrary
                 result[k++] = right[j++];
         }
 
-        /// <summary>
-        /// Быстрая сортировка (Хоара)
-        /// </summary>
-        public static int[] QuickSort(int[] array, int left, int right)
+        public static void QuickSort(int[] array, int left, int right)
         {
             if (left < right)
             {
@@ -61,7 +48,6 @@ namespace SortLibrary
                 QuickSort(array, left, pivot - 1);
                 QuickSort(array, pivot + 1, right);
             }
-            return array;
         }
 
         private static int Partition(int[] array, int left, int right)
