@@ -130,6 +130,12 @@
     <Compile Include="History.Designer.cs">
       <DependentUpon>History.cs</DependentUpon>
     </Compile>
+    <Compile Include="Hogwarts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hogwarts.Designer.cs">
+      <DependentUpon>Hogwarts.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +152,9 @@
     </Compile>
     <EmbeddedResource Include="History.resx">
       <DependentUpon>History.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hogwarts.resx">
+      <DependentUpon>Hogwarts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

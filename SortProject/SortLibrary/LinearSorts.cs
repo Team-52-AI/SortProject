@@ -1,5 +1,4 @@
-﻿// LinearSorts.cs
-using System;
+﻿using System;
 
 namespace SortLibrary
 {
@@ -34,11 +33,60 @@ namespace SortLibrary
             }
         }
 
-        public static void Sort2(ref int a, ref int b)
+        public static void Sort2(int[] array)
         {
-            if (a > b)
-                Swap(ref a, ref b);
+            if (array == null || array.Length < 2)
+                return; // Нечего сортировать
+
+            // Находим два уникальных числа в массиве
+            int firstNum = array[0];
+            int secondNum = array[0];
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] != firstNum)
+                {
+                    secondNum = array[i];
+                    break;
+                }
+            }
+
+            // Если массив состоит из одинаковых чисел, выходим
+            if (firstNum == secondNum)
+                return;
+
+            // Определяем порядок сортировки (меньшее число идет первым)
+            if (firstNum > secondNum)
+            {
+                int temp = firstNum;
+                firstNum = secondNum;
+                secondNum = temp;
+            }
+
+            // Сортировка методом "разделения" (аналогично Dutch National Flag)
+            int left = 0;
+            int right = array.Length - 1;
+
+            while (left < right)
+            {
+                while (left < right && array[left] == firstNum)
+                    left++;
+
+                while (left < right && array[right] == secondNum)
+                    right--;
+
+                if (left < right)
+                {
+                    // Меняем местами
+                    int temp = array[left];
+                    array[left] = array[right];
+                    array[right] = temp;
+                    left++;
+                    right--;
+                }
+            }
         }
+
 
         public static void DutchFlagSort(int[] array)
         {

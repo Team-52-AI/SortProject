@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Diagnostics;
 using SortLibrary;
+using System.Linq;
 
 namespace SortView
 {
@@ -122,68 +123,169 @@ namespace SortView
 
         private void button7_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text != "2")
-            {
-                richTextBox2.Text = "Для этой сортировки укажите 2 в поле 'Количество элементов'";
-                return;
-            }
-
+            // Получаем массив из ввода
             int[] numbers = ParseInputArray();
             if (numbers == null) return;
 
+            // Проверяем, что массив содержит ровно 2 вида чисел
+            if (!ContainsOnlyTwoNumbers(numbers))
+            {
+                richTextBox2.Text = "Ошибка: массив должен содержать ровно 2 вида чисел!";
+                return;
+            }
+
+            // Создаем копию для сортировки
             int[] arrayToSort = (int[])numbers.Clone();
 
+            // Замеряем время выполнения сортировки
             Stopwatch stopwatch = Stopwatch.StartNew();
-            LinearSorts.Sort2(0, 1);
+
+            // Выполняем оптимизированную сортировку
+            SortTwoNumberArray(arrayToSort);
+
             stopwatch.Stop();
 
+            // Выводим результаты
             richTextBox2.Text = string.Join(", ", arrayToSort);
             textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-            History.Instance.AddResult(sortCounter++, "Сортировка 2 элементов", stopwatch.Elapsed);
+            History.Instance.AddResult(sortCounter++, "Сортировка 2 видов чисел", stopwatch.Elapsed);
+        }
+
+        // Эффективная сортировка массива с двумя видами чисел
+        private void SortTwoNumberArray(int[] array)
+        {
+            if (array == null || array.Length < 2)
+                return;
+
+            // Находим два уникальных числа
+            int firstNum = array[0];
+            int secondNum = firstNum;
+
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] != firstNum)
+                {
+                    secondNum = array[i];
+                    break;
+                }
+            }
+
+            // Если все элементы одинаковые - выходим
+            if (firstNum == secondNum)
+                return;
+
+            // Определяем порядок сортировки (по возрастанию)
+            if (firstNum > secondNum)
+            {
+                int temp = firstNum;
+                firstNum = secondNum;
+                secondNum = temp;
+            }
+
+            // Разделение массива (аналог partition в QuickSort)
+            int left = 0;
+            int right = array.Length - 1;
+
+            while (left < right)
+            {
+                while (left < right && array[left] == firstNum)
+                    left++;
+
+                while (left < right && array[right] == secondNum)
+                    right--;
+
+                if (left < right)
+                {
+                    // Меняем местами
+                    int temp = array[left];
+                    array[left] = array[right];
+                    array[right] = temp;
+                    left++;
+                    right--;
+                }
+            }
+        }
+
+        // Метод для проверки, что массив содержит ровно 2 вида чисел
+        private bool ContainsOnlyTwoNumbers(int[] array)
+        {
+            if (array == null || array.Length == 0)
+                return false;
+
+            return array.Distinct().Count() == 2;
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text != "3")
-            {
-                richTextBox2.Text = "Для этой сортировки укажите 3 в поле 'Количество элементов'";
-                return;
-            }
-
             int[] numbers = ParseInputArray();
             if (numbers == null) return;
+
+            // Проверяем, что в массиве ровно 3 уникальных числа
+            var uniqueNumbers = numbers.Distinct().ToArray();
+            if (uniqueNumbers.Length != 3)
+            {
+                richTextBox2.Text = "Ошибка: массив должен содержать ровно 3 вида чисел!";
+                return;
+            }
 
             int[] arrayToSort = (int[])numbers.Clone();
 
             Stopwatch stopwatch = Stopwatch.StartNew();
-            LinearSorts.DutchFlagSort(arrayToSort);
+
+            // Получаем 3 уникальных числа
+            int low = uniqueNumbers.Min();
+            int high = uniqueNumbers.Max();
+            int mid = uniqueNumbers.First(x => x != low && x != high);
+
+            // Сортируем по принципу голландского флага
+            DutchFlagSort(arrayToSort, mid, high);
+
             stopwatch.Stop();
 
             richTextBox2.Text = string.Join(", ", arrayToSort);
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-            History.Instance.AddResult(sortCounter++, "Голландский флаг", stopwatch.Elapsed);
+            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4} мс";
+            History.Instance.AddResult(sortCounter++, "Сортировка 3 чисел", stopwatch.Elapsed);
+        }
+
+        // Реализация сортировки голландского флага для 3 чисел
+        private static void DutchFlagSort(int[] arr, int midValue, int highValue)
+        {
+            int i = 0;    // Текущий элемент
+            int j = 0;    // Граница для low элементов
+            int k = arr.Length - 1; // Граница для high элементов
+
+            while (i <= k)
+            {
+                if (arr[i] < midValue)
+                {
+                    Swap(ref arr[i], ref arr[j]);
+                    j++;
+                    i++;
+                }
+                else if (arr[i] > midValue)
+                {
+                    Swap(ref arr[i], ref arr[k]);
+                    k--;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+        }
+
+        private static void Swap(ref int a, ref int b)
+        {
+            int temp = a;
+            a = b;
+            b = temp;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            if (textBox3.Text != "4")
-            {
-                richTextBox2.Text = "Для этой сортировки укажите 4 в поле 'Количество элементов'";
-                return;
-            }
-
-            int[] numbers = ParseInputArray();
-            if (numbers == null) return;
-
-            int[] arrayToSort = (int[])numbers.Clone();
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
-            LinearSorts.HogwartsSort(arrayToSort);
-            stopwatch.Stop();
-
-            richTextBox2.Text = string.Join(", ", arrayToSort);
-            textBox1.Text = $"{stopwatch.Elapsed.TotalMilliseconds:F4}";
-            History.Instance.AddResult(sortCounter++, "Хогвартс сортировка", stopwatch.Elapsed);
+            Hogwarts form = new Hogwarts();
+            form.Show();
+            this.Hide();
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -194,11 +296,6 @@ namespace SortView
         private void button12_Click(object sender, EventArgs e)
         {
             History.Instance.ShowDialog();
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
