@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button10 = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,17 +49,6 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(873, 281);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // button10
-            // 
-            this.button10.Font = new System.Drawing.Font("Monotype Corsiva", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button10.Location = new System.Drawing.Point(12, 287);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(70, 54);
-            this.button10.TabIndex = 21;
-            this.button10.Text = "←";
-            this.button10.UseVisualStyleBackColor = true;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // Column1
             // 
@@ -83,6 +72,17 @@
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.Width = 273;
+            // 
+            // button10
+            // 
+            this.button10.Font = new System.Drawing.Font("Monotype Corsiva", 18F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button10.Location = new System.Drawing.Point(12, 287);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(70, 54);
+            this.button10.TabIndex = 21;
+            this.button10.Text = "←";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // History
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿// LinearSorts.cs
+using System;
 
 namespace SortLibrary
 {
@@ -32,6 +33,12 @@ namespace SortLibrary
                 }
             }
         }
+
+        //public static void Sort2(ref int a, ref int b)
+        //{
+        //    if (a > b)
+        //        Swap(ref a, ref b);
+        //}
 
         public static void Sort2(int[] array)
         {
@@ -86,7 +93,6 @@ namespace SortLibrary
                 }
             }
         }
-
 
         public static void DutchFlagSort(int[] array)
         {
